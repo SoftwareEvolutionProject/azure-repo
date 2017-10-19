@@ -30,13 +30,13 @@ printsRouter.route('/print/build/:id').get(function(req, res, next){
         res.send(result)
     }, next);
 });
-printsRouter.route('/print/machine/:id').get(function(req, res, next){
-    var id = req.params.id
-    database.getPrintByMachine(id).then(function(result){
+printsRouter.route('/print/machine/:machine').get(function(req, res, next){
+    var machine = req.params.machine
+    database.getPrintByMachine(machine).then(function(result){
         res.send(result)
     }, next);
 });
-printsRouter.route('/print/operator/:id').get(function(req, res, next){
+printsRouter.route('/print/operator/:operator').get(function(req, res, next){
     var operator = req.params.operator
     database.getPrintByOperator(operator).then(function(result){
         res.send(result)
