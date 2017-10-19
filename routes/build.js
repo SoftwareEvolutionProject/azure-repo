@@ -17,7 +17,7 @@ buildsRouter.route('/builds')
  
 });
 
-buildsRouter.route('/build/id/:id').get(function(req, res, next){
+buildsRouter.route('/build/:id').get(function(req, res, next){
     var id = req.params.id
     database.getBuildById(id).then(function(build){
         res.send(build)
