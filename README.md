@@ -1,8 +1,7 @@
 # azure-repo
 this is a submodel of the main repo soft-evo
 
-#builds
-
+# builds
 '/builds' -> list of builds
 
 '/build/:id' -> one build - parameter : build id
@@ -11,14 +10,12 @@ this is a submodel of the main repo soft-evo
 
 '/buildpart/:id'-> one buildParts - parameter : buildpart id
 
-#companies
-
+# companies
 '/companies' -> list of companies
 
 '/company/:id' -> one comapny - parameter: company name
 
-#details
-
+# details
 '/details' -> list of details
 
 '/details/:id' -> one detail - parameter: detail id
@@ -29,8 +26,7 @@ this is a submodel of the main repo soft-evo
 
 '/details/projectId/:projectId' -> one detail - parameter: project id
 
-#prints
-
+# prints
 '/prints' -> list of prints
 
 '/print/:id' -> one print - parameter: print id
