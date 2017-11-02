@@ -1,6 +1,8 @@
-var express = require('express');
-var companyRouter = express.Router();
-var database = require('../database.js');
+var express = require('express')
+var companyRouter = express.Router()
+var database = require('../database.js')
+var bodyParser = require('body-parser') 
+var jsonParser = bodyParser.json()
 
 companyRouter.route('/companies')
 .get(function (req,res, next) {
@@ -24,5 +26,12 @@ companyRouter.route('/company/:id').get(function(req, res, next){
     }, next);
 });
 
-
+companyRouter.post('/company/create', jsonParser, function(req, res){
+    var name = req.body.name
+    database.createCompanies(name).then(function(data){
+        res.status(200).send("success");        
+    }, function(error){
+        console.log('Error from createCompanies in company: ' + error);        
+    });
+});
 module.exports = companyRouter;

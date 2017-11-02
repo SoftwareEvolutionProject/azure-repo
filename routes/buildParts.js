@@ -1,6 +1,8 @@
 var express = require('express');
 var buildPartsRouter = express.Router();
 var database = require('../database.js');
+var bodyParser = require('body-parser') 
+var jsonParser = bodyParser.json()
 
 buildPartsRouter.route('/buildParts')
 .get(function (req,res, next) {
@@ -22,6 +24,17 @@ buildPartsRouter.route('/buildpart/:id').get(function(req, res, next){
     database.getbuild(id).then(function(result){
         res.send(result)
     }, next);
+});
+
+buildPartsRouter.post('/buildpart/create', jsonParser, function(req, res){
+    var buildDetailsId = req.body.buildDetailsId
+    var partId = req.body.partId
+    var partComment = req.body.partComment
+    database.createBuildParts(buildDetailsId, partId, partComment).then(function(data){
+        res.status(200).send("success")
+    }, function(error){
+        console.log('Error from createbuildpart in buildpart: ' + error);        
+    });
 });
 
 module.exports = buildPartsRouter;

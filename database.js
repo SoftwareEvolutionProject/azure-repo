@@ -129,6 +129,63 @@ function getDataByParameters(sqlQuery, arrayOfParameters){
 	return deferred.promise;
 }
 
+function createPrint(buildsId, startTime, endTime, operator, machine, powderWeightStart,
+	powderWeightEnd, buildPlatformMaterial, buildPlatformWeight){
+	
+		var queryString = 'INSERT INTO prints (buildsId, startTime, endTime, operator, machine, powderWeightStart, powderWeightEnd, buildPlatformMaterial, buildPlatformWeight) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);';	
+		return createObject(queryString,[buildsId, startTime, endTime, operator, machine, powderWeightStart,
+			powderWeightEnd, buildPlatformMaterial, buildPlatformWeight])
+}
+function createBuild(image, creationDate,comment){
+	var queryString = 'INSERT INTO builds (image, creationDate, comment) VALUES(?, ?, ?);'
+
+	return createObject(queryString, [image,creationDate,comment])
+}
+
+function createBuildParts(buildDetailsId, partId, partComment){
+	var queryString = 'INSERT INTO buildparts (buildDetailsId, partId, partComment) VALUES(?, ?, ?);'
+	return createObject(queryString, [buildDetailsId, partId, partComment])
+}
+
+function createCompanies(name){
+	var queryString = 'INSERT INTO companies (name) VALUES(?);'
+	return createObject(queryString, [name])
+}
+
+function createDetails(name, companyId, originalFileName, projectId, creationDate, comment){
+	var queryString = 'INSERT INTO details (name, companyId, originalFileName, projectId, creationDate, comment) VALUES(?, ?, ?, ?, ?, ?);'
+	return createObject(queryString, [name, companyId, originalFileName, projectId, creationDate, comment])
+}
+function createObject(sqlQuery, arrayOfParameters){
+	var deferred = Q.defer();
+	pool.getConnection(function (err, connection) {
+		if (err) {
+			console.log(err);
+			var dbError = new Error('No db connection');
+			console.log(dbError);
+		}
+		else {
+			console.log("connected...")
+			connection.query(sqlQuery, arrayOfParameters, function (err, rows) {
+				if (err) {
+					deferred.reject(err);
+					console.log("Error1: " + err);
+				}
+				else {
+					if (err) {
+						deferred.reject(err);
+					}
+					else {
+						deferred.resolve(rows);
+					}
+				}
+				connection.release();
+			});
+		}
+	});
+	return deferred.promise;
+}
+
 exports.getDetails = getDetails
 exports.getPrints = getPrints
 exports.getBuilds = getBuilds
@@ -145,3 +202,8 @@ exports.getPrintByMachine = getPrintByMachine
 exports.getPrintByOperator = getPrintByOperator
 exports.getBuildPartsById = getBuildPartsById
 exports.getCompanyById = getCompanyById
+exports.createPrint = createPrint
+exports.createBuild = createBuild
+exports.createBuildParts = createBuildParts
+exports.createCompanies = createCompanies
+exports.createDetails = createDetails

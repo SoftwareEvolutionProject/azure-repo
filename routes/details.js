@@ -1,7 +1,8 @@
-var express = require('express');
-var details = express.Router();
-var database = require('../database.js');
-
+var express = require('express')
+var details = express.Router()
+var database = require('../database.js')
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json()
 
 details.route('/details')
 .get(function (req,res, next) {
@@ -44,6 +45,21 @@ details.route('/details/projectId/:projectId').get(function(req, res, next){
     database.getDetailsByProjectId(projectId).then(function(detail){
         res.send(detail)
     }, next);
+});
+
+details.post('/details/create', jsonParser, function(req, res){
+    var name = req.body.name
+    var companyId = req.body.companyId
+    var originalFileName = req.body.originalFileName
+    var projectId = req.body.projectId
+    var creationDate = req.body.creationDate
+    var comment = req.body.comment
+
+    database.createDetails(name, companyId, originalFileName, projectId, creationDate, comment).then(function(data){
+        res.status(200).send("success");        
+    }, function(error){
+        console.log('Error from createDetails in details: ' + error);        
+    });
 });
 
 module.exports = details;
