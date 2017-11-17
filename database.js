@@ -38,6 +38,7 @@ function getDetailsByCompanyId(companyId){
     const query = 'select * from details where companyId=?'
     return getDataByParameters(query, [companyId])
 }
+//TOFIX 
 function getDetailsByOriginalFileName(fileName){
     const query = 'select * from details where originaleFileName=?'
     return getDataByParameters(query, [fileName])
@@ -75,6 +76,11 @@ function getBuildPartsById(id){
 function getCompanyById(id){
     const query = 'select * from companies where id=?'
     return getDataByParameters(query, [id])
+}
+
+function getFileById(fileId){
+	const query = 'select * from file where id=?'
+	return getDataByParameters(query, [fileId])
 }
 function getData(sqlQuery){
 	var deferred = Q.defer();
@@ -152,9 +158,9 @@ function createCompanies(name){
 	return createObject(queryString, [name])
 }
 
-function createDetails(name, companyId, originalFileName, projectId, creationDate, comment){
-	var queryString = 'INSERT INTO details (name, companyId, originalFileName, projectId, creationDate, comment) VALUES(?, ?, ?, ?, ?, ?);'
-	return createObject(queryString, [name, companyId, originalFileName, projectId, creationDate, comment])
+function createDetails(name, companyId, fileId, projectId, creationDate, comment){
+	var queryString = 'INSERT INTO details (name, companyId, fileId, projectId, creationDate, comment) VALUES(?, ?, ?, ?, ?, ?);'
+	return createObject(queryString, [name, companyId, fileId, projectId, creationDate, comment])
 }
 function createObject(sqlQuery, arrayOfParameters){
 	var deferred = Q.defer();
@@ -207,3 +213,4 @@ exports.createBuild = createBuild
 exports.createBuildParts = createBuildParts
 exports.createCompanies = createCompanies
 exports.createDetails = createDetails
+exports.getFileById = getFileById

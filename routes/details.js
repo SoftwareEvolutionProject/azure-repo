@@ -26,6 +26,7 @@ details.route('/details/:id').get(function(req, res, next){
     }, next);
 });
 
+// TOFIX
 details.route('/details/companyId/:id').get(function(req, res, next){
     var companyId = req.params.id
     database.getDetailsByCompanyId(companyId).then(function(detail){
@@ -33,6 +34,7 @@ details.route('/details/companyId/:id').get(function(req, res, next){
     }, next);
 });
 
+// TOFIX
 details.route('/details/originalFileName/:filename').get(function(req, res, next){
     var filename = req.params.filename
     database.getDetailsByOriginalFileName(filename).then(function(detail){
@@ -50,12 +52,12 @@ details.route('/details/projectId/:projectId').get(function(req, res, next){
 details.post('/details/create', jsonParser, function(req, res){
     var name = req.body.name
     var companyId = req.body.companyId
-    var originalFileName = req.body.originalFileName
+    var fileId = req.body.fileId
     var projectId = req.body.projectId
     var creationDate = req.body.creationDate
     var comment = req.body.comment
 
-    database.createDetails(name, companyId, originalFileName, projectId, creationDate, comment).then(function(data){
+    database.createDetails(name, companyId, fileId, projectId, creationDate, comment).then(function(data){
         res.status(200).send("success");        
     }, function(error){
         console.log('Error from createDetails in details: ' + error);        
