@@ -34,13 +34,13 @@ details.route('/details/companyId/:id').get(function(req, res, next){
     }, next);
 });
 
-// TOFIX
-details.route('/details/originalFileName/:filename').get(function(req, res, next){
-    var filename = req.params.filename
-    database.getDetailsByOriginalFileName(filename).then(function(detail){
-        res.send(detail)
-    }, next);
-});
+// // TOFIX
+// details.route('/details/originalFileName/:filename').get(function(req, res, next){
+//     var filename = req.params.filename
+//     database.getDetailsByOriginalFileName(filename).then(function(detail){
+//         res.send(detail)
+//     }, next);
+// });
 
 details.route('/details/projectId/:projectId').get(function(req, res, next){
     var projectId = req.params.projectId

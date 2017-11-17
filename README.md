@@ -42,7 +42,6 @@ parameters : json ex ->
 
 '/details/companyId/:id' ->  one detail - parameter: companyId
 
-'/details/originalFileName/:filename' -> one detail - parameter: file name
 
 '/details/projectId/:projectId' -> one detail - parameter: project id
 
@@ -102,3 +101,11 @@ parameters : json ex ->
 "partId":"" , 
 "partComment" : ""
 }
+
+# file
+
+'download/file/:id' -> one file to download
+
+- verb : get
+
+- parameter: file id
