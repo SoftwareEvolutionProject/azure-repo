@@ -83,6 +83,11 @@ function getFileById(fileId){
 	return getDataByParameters(query, [fileId])
 }
 
+function getImgById(imgId){
+	const query = 'select * from img where id=?'
+	return getDataByParameters(query, [imgId])
+}
+
 function getDetailsByBuildId(buildId){
 	const query = 'select * from builddetails where buildId=?'
 	return getDataByParameters(query, [buildId])
@@ -148,9 +153,8 @@ function createPrint(buildsId, startTime, endTime, operator, machine, powderWeig
 			powderWeightEnd, buildPlatformMaterial, buildPlatformWeight])
 }
 function createBuild(image, creationDate,comment){
-	var queryString = 'INSERT INTO builds (image, creationDate, comment) VALUES(?, ?, ?);'
-
-	return createObject(queryString, [image,creationDate,comment])
+	var queryString = 'INSERT INTO builds (imageId, creationDate, comment) VALUES(?, ?, ?);'
+	return createObject(queryString, [imageId,creationDate,comment])
 }
 
 function createBuildParts(buildDetailsId, partId, partComment){
@@ -220,3 +224,4 @@ exports.createCompanies = createCompanies
 exports.createDetails = createDetails
 exports.getFileById = getFileById
 exports.getDetailsByBuildId = getDetailsByBuildId
+exports.getImgById = getImgById

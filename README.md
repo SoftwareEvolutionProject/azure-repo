@@ -45,7 +45,7 @@ parameters : json ex ->
 
 '/details/projectId/:projectId' -> one detail - parameter: project id
 
-'/details/build/:id' -> get a list of details - parameter: buildId
+'/details/build/:id' -> get a list of details Ids - parameter: buildId
 
 'details/create'
 
@@ -111,3 +111,8 @@ parameters : json ex ->
 - verb : get
 
 - parameter: file id
+
+# Img
+'/download/img/:id' -> one img to dowload
+- verb : get
+- parameter: img Id

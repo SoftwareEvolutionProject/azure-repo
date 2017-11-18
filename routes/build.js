@@ -3,6 +3,7 @@ var buildsRouter = express.Router()
 var database = require('../database.js')
 var bodyParser = require('body-parser') 
 var jsonParser = bodyParser.json()
+var fs = require("fs")
 
 buildsRouter.route('/builds')
 .get(function (req,res, next) {
@@ -27,11 +28,11 @@ buildsRouter.route('/build/:id').get(function(req, res, next){
 });
 
 buildsRouter.post('/build/create',jsonParser, function(req, res){
-    var image = req.body.image 
+    var imageId = req.body.imageId 
     var creationDate = req.body.creationDate
     var comment = req.body.comment
-
-    database.createBuild(image, creationDate,comment).then(function(data){
+    
+    database.createBuild(imageId, creationDate,comment).then(function(data){
         res.status(200).send("success");
     }, function(error){
         console.log('Error from createbuild in build: ' + error);        

@@ -37,6 +37,30 @@ fileRouter.route('/download/file/:id').get(function(req, res, next){
     }, next);
 });
 
+
+fileRouter.route('/download/img/:id').get(function(req, res, next){
+    
+    var imgId = req.params.id
+    console.log(imgId)
+    database.getImgById(imgId).then(function(img){
+
+        var image = img[0].path + img[0].name
+        console.log(image)
+
+        var imgName = path.basename(image);
+        console.log(imgName)
+        var mimetype = mime.lookup(image);
+        console.log(mimetype)
+        
+        res.setHeader('Content-disposition', 'attachment; filename=' + imgName);
+        res.setHeader('Content-type', mimetype);
+      
+        var filestream = fs.createReadStream(image);
+        filestream.pipe(res);
+
+    }, next);
+});
+
 fileRouter.post('/file/create', jsonParser, function(req, res){
     
     var dt = dateTime.create();
