@@ -64,4 +64,11 @@ details.post('/details/create', jsonParser, function(req, res){
     });
 });
 
+details.route('/details/build/:id').get(function(req, res, next){
+    var buildId = req.params.id
+    database.getDetailsByBuildId(buildId).then(function(details){
+        res.send(details)
+    }, next)
+});
+
 module.exports = details;

@@ -82,6 +82,11 @@ function getFileById(fileId){
 	const query = 'select * from file where id=?'
 	return getDataByParameters(query, [fileId])
 }
+
+function getDetailsByBuildId(buildId){
+	const query = 'select * from builddetails where buildId=?'
+	return getDataByParameters(query, [buildId])
+}
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
@@ -214,3 +219,4 @@ exports.createBuildParts = createBuildParts
 exports.createCompanies = createCompanies
 exports.createDetails = createDetails
 exports.getFileById = getFileById
+exports.getDetailsByBuildId = getDetailsByBuildId

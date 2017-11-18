@@ -45,6 +45,8 @@ parameters : json ex ->
 
 '/details/projectId/:projectId' -> one detail - parameter: project id
 
+'/details/build/:id' -> get a list of details - parameter: buildId
+
 'details/create'
 
 - verb: POST
