@@ -231,3 +231,4 @@ exports.createDetails = createDetails
 exports.getFileById = getFileById
 exports.getDetailsByBuildId = getDetailsByBuildId
 exports.getImgById = getImgById
+exports.getBuildsByDetailsId = getBuildsByDetailsId
