@@ -92,6 +92,12 @@ function getDetailsByBuildId(buildId){
 	const query = 'select * from builddetails where buildId=?'
 	return getDataByParameters(query, [buildId])
 }
+
+function getBuildsByDetailsId(detailId) {
+	const query = 'select * from builddetails where detailsId=?'
+	return getDataByParameters(query, [detailId])
+}
+
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {

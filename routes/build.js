@@ -27,6 +27,13 @@ buildsRouter.route('/build/:id').get(function(req, res, next){
     }, next);
 });
 
+buildsRouter.route('/build/details/:id').get(function(req, res, next){
+    var detailsId = req.params.id
+    database.getBuildsByDetailsId(detailsId).then(function(build){
+        res.send(build)
+    }, next)
+});
+
 buildsRouter.post('/build/create',jsonParser, function(req, res){
     var imageId = req.body.imageId 
     var creationDate = req.body.creationDate
