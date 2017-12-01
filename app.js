@@ -13,6 +13,10 @@ var prints = require('./routes/print.js');
 var buildParts = require('./routes/buildParts.js');
 var companies = require('./routes/companies.js');
 var files = require('./routes/file.js');
+var operator = require('./routes/operator.js');
+var material = require('./routes/material.js');
+var tests = require('./routes/tests.js');
+var measurement = require('./routes/measurement.js');
 
 
 //tell express that www is the root of our public web folder
@@ -23,6 +27,11 @@ app.use('/api', buildParts);
 app.use('/api', companies);
 app.use('/api', prints);
 app.use('/api', files);
+app.use('/api', operator);
+app.use('/api', material);
+app.use('/api', tests);
+app.use('/api', measurement);
+
 
 app.set('/download', path.join(__dirname, 'public'));
 

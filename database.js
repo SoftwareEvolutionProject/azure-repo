@@ -64,9 +64,9 @@ function getPrintByMachine(machine){
     const query = 'select * from prints where machine=?'
     return getDataByParameters(query,[machine])
 }
-function getPrintByOperator(operator){
-    const query = 'select * from prints where operator=?'
-    return getDataByParameters(query,[operator])
+function getPrintByOperator(operatorId){
+    const query = 'select * from prints where operatorId=?'
+    return getDataByParameters(query,[operatorId])
 }
 
 function getBuildPartsById(id){
@@ -92,6 +92,45 @@ function getDetailsByBuildId(buildId){
 	const query = 'select * from builddetails where buildId=?'
 	return getDataByParameters(query, [buildId])
 }
+
+function getOperators(){
+	const query = 'select * from operator'
+	return getData(query)
+}
+function getOperatorById(operatorId){
+	const query = 'select * from operator where id=?'
+	return getDataByParameters(query, [operatorId])
+}
+
+function getMaterials(){
+	const query = 'select * from material'
+	return getData(query)
+}
+
+function getMaterialById(id){
+	const query = 'select * from material where id=?'
+	return getDataByParameters(query, [id])
+}
+
+function getTestsById(id){
+	const query = 'select * from hallflowtests where id=?'
+	return getDataByParameters(query, [id])
+}
+
+function getTests(){
+	const query = 'select * from hallflowtests'
+	return getData(query)
+}
+
+function getMeasurements(){
+	const query = 'select * from measurement'
+	return getData(query)
+}
+function getMeasurementById(id){
+	const query = 'select * from measurement where id=?'
+	return getData(query)
+}
+
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
@@ -143,6 +182,12 @@ function getDataByParameters(sqlQuery, arrayOfParameters){
 		}
 	});
 	return deferred.promise;
+}
+
+function createTest(operatorId,date,relativehumidity,temperature,tap,measurementId,materialId){
+	var queryString = 'INSERT INTO hallflowtests (operatorId, date, relativehumidity, temperature, tap, measurementId, materialId) VALUES(?, ?, ?, ?, ?, ?, ?);';	
+	return createObject(queryString,[operatorId, date, relativehumidity, temperature, tap, measurementId,
+		materialId])
 }
 
 function createPrint(buildsId, startTime, endTime, operator, machine, powderWeightStart,
@@ -200,7 +245,10 @@ function createObject(sqlQuery, arrayOfParameters){
 	});
 	return deferred.promise;
 }
-
+exports.getMaterials = getMaterials
+exports.getMaterialById =getMaterialById
+exports.getTestsById = getTestsById
+exports.getTests = getTests
 exports.getDetails = getDetails
 exports.getPrints = getPrints
 exports.getBuilds = getBuilds
@@ -225,3 +273,8 @@ exports.createDetails = createDetails
 exports.getFileById = getFileById
 exports.getDetailsByBuildId = getDetailsByBuildId
 exports.getImgById = getImgById
+exports.getOperators = getOperators
+exports.getOperatorById = getOperatorById
+exports.getMeasurements =  getMeasurements
+exports.getMeasurementById = getMeasurementById
+exports.createTest = createTest

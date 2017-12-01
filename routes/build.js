@@ -28,6 +28,7 @@ buildsRouter.route('/build/:id').get(function(req, res, next){
 });
 
 buildsRouter.post('/build/create',jsonParser, function(req, res){
+
     var imageId = req.body.imageId 
     var creationDate = req.body.creationDate
     var comment = req.body.comment

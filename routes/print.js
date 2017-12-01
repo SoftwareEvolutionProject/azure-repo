@@ -39,9 +39,9 @@ printsRouter.route('/print/machine/:machine').get(function(req, res, next){
         res.send(result)
     }, next);
 });
-printsRouter.route('/print/operator/:operator').get(function(req, res, next){
-    var operator = req.params.operator
-    database.getPrintByOperator(operator).then(function(result){
+printsRouter.route('/print/operator/:operatorId').get(function(req, res, next){
+    var operatorId = req.params.operatorId
+    database.getPrintByOperator(operatorId).then(function(result){
         res.send(result)
     }, next);
 });

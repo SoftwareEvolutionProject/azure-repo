@@ -69,7 +69,7 @@ parameters : json ex ->
 
 '/print/machine/:id' -> one print - parameter: machine name
 
-'/print/operator/:id'-> one print - parameter: operator name
+'/print/operator/:operatorId'-> one print - parameter: operatorId
 
 '/print/create' 
 
@@ -116,3 +116,47 @@ parameters : json ex ->
 '/download/img/:id' -> one img to dowload
 - verb : get
 - parameter: img Id
+
+# operator
+'/operators' -> return all operatods
+
+'/operator/:id'
+- verb: get
+- parameter: operator id
+
+# tests
+
+'/hallflowtests' -> return a list of tests
+
+'/hallflowtest/:id' 
+- verb: get
+- parameter: test id
+
+'/hallflowtest/create'
+- verb: post
+parameters : json ex -> 
+{
+"operartorId" : "int", 
+"date":"datetime" , 
+"relativehumidity" : "double",
+"temperature" : "double",
+"tap" : "string",
+"measurementId" : "int",
+"materialId":"int"
+}
+
+# material
+
+'/materials' -> return all materials
+
+'/material/:id'
+- verb: get
+- parameter: material id
+
+# measurement
+
+'/measurements' -> return all measurements
+
+'/measurement/:id' 
+- verb: get
+- parameter: measurement Id
