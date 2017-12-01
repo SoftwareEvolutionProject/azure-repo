@@ -6,6 +6,8 @@ this is a submodel of the main repo soft-evo
 
 '/build/:id' -> one build - parameter : build id
 
+'/build/details/:id' -> get a list of build Ids - parameter: detail id
+
 '/buildParts' -> list of buildParts
 
 '/buildpart/:id'-> one buildParts - parameter : buildpart id
