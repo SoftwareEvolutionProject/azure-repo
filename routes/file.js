@@ -14,11 +14,6 @@ fileRouter.route('/download/file/:id').get(function(req, res, next){
     var fileId = req.params.id
     console.log(fileId)
     database.getFileById(fileId).then(function(fil){
-        //var filename = file[0].filename
-        //var path = file[0].filepath
-        
-        // console.log(file[0].filepath)
-        // res.download(path, filename)
 
         var file = fil[0].filepath + fil[0].filename
         console.log(file)

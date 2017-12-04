@@ -79,7 +79,7 @@ function getCompanyById(id){
 }
 
 function getFileById(fileId){
-	const query = 'select * from file where id=?'
+	const query = 'select * from file where id=?';
 	return getDataByParameters(query, [fileId])
 }
 
@@ -130,15 +130,9 @@ function getMeasurementById(id){
 	const query = 'select * from measurement where id=?'
 	return getData(query)
 }
-
-function getFileById(id){
-	const query = 'select * from material where id=?'
-	return getData(query)
-}
-
 function getBuildsByDetailsId(id){
 	const query = 'select * from builddetails where detailsId=?'
-	return getData(query)
+	return getDataByParameters(query, [id])
 }
 
 function getData(sqlQuery){
@@ -280,7 +274,6 @@ exports.createBuild = createBuild
 exports.createBuildParts = createBuildParts
 exports.createCompanies = createCompanies
 exports.createDetails = createDetails
-exports.getFileById = getFileById
 exports.getDetailsByBuildId = getDetailsByBuildId
 exports.getImgById = getImgById
 exports.getOperators = getOperators
