@@ -131,6 +131,11 @@ function getMeasurementById(id){
 	return getData(query)
 }
 
+function getFileById(id){
+	const query = 'select * from material where id=?'
+	return getData(query)
+}
+
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
@@ -278,3 +283,4 @@ exports.getOperatorById = getOperatorById
 exports.getMeasurements =  getMeasurements
 exports.getMeasurementById = getMeasurementById
 exports.createTest = createTest
+exports.getFileById = getFileById

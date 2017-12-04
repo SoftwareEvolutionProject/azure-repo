@@ -155,6 +155,8 @@ parameters : json ex ->
 - verb: get
 - parameter: material id
 
+'/material/pdf/:id' -> return a pdf file in JSON format
+
 # measurement
 
 '/measurements' -> return all measurements
