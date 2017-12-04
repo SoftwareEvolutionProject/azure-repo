@@ -12,7 +12,7 @@ operatorRouter.route('/operators')
     }));
     Promise.all(promises).then(function (values) {
         var json = JSON.stringify({
-            printsApi: values[0]
+            operatorApi: values[0]
         });
         res.end(json);
     });

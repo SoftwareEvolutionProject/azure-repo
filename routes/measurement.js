@@ -12,7 +12,7 @@ measurementRouter.route('/measurements')
     }));
     Promise.all(promises).then(function (values) {
         var json = JSON.stringify({
-            printsApi: values[0]
+            measurementsApi: values[0]
         });
         res.end(json);
     });

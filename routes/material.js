@@ -16,7 +16,7 @@ materialRouter.route('/materials')
     }));
     Promise.all(promises).then(function (values) {
         var json = JSON.stringify({
-            printsApi: values[0]
+            materialsApi: values[0]
         });
         res.end(json);
     });
