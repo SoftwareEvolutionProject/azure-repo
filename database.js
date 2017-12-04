@@ -136,6 +136,11 @@ function getFileById(id){
 	return getData(query)
 }
 
+function getBuildsByDetailsId(id){
+	const query = 'select * from builddetails where detailsId=?'
+	return getData(query)
+}
+
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
@@ -284,3 +289,4 @@ exports.getMeasurements =  getMeasurements
 exports.getMeasurementById = getMeasurementById
 exports.createTest = createTest
 exports.getFileById = getFileById
+exports.getBuildsByDetailsId = getBuildsByDetailsId
