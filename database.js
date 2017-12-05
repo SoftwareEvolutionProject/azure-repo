@@ -169,9 +169,9 @@ function getDetailsByTime(timeStamp){
 	const query = 'select * from details where creationDate=?'
 	return getDataByParameters(query,[timeStamp])
 }
-function getPrintsByTime(timeStamp){
-	const query = 'select * from prints where startTime=?'
-	return getDataByParameters(query,[timeStamp])
+function getPrintsByTime(month,year){
+	const query = 'select * from prints where MONTH(startTime)=? AND YEAR(startTime)=?'
+	return getDataByParameters(query,[month,year])
 }
 function getData(sqlQuery){
 	var deferred = Q.defer();

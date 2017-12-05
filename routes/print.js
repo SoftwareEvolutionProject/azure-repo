@@ -65,11 +65,12 @@ printsRouter.post('/print/create', jsonParser, function(req, res){
      });
 });
 
-printsRouter.route('/print/time/:timeStamp')
+printsRouter.route('/print/time/:month/:year')
 .get(function (req,res, next) {
     
-    var timeStamp = req.params.timeStamp
-    database.getPrintsByTime(timeStamp).then(function(result){      
+    var month = req.params.month
+    var year = req.params.year
+    database.getPrintsByTime(month,year).then(function(result){      
         res.send(result)
     }, next);
 });
