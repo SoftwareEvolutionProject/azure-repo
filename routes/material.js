@@ -32,12 +32,11 @@ materialRouter.route('/material/:id')
     }, next);
 });
 
-materialRouter.route('/material/:id')
+materialRouter.route('/material/time/:timeStamp')
 .get(function (req,res, next) {
     
-    var id = req.params.id
-    database.getMaterialById(id).then(function(result){
-        
+    var timeStamp = req.params.timeStamp
+    database.getMaterialByTime(timeStamp).then(function(result){      
         res.send(result)
     }, next);
 });

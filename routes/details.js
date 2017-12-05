@@ -71,4 +71,12 @@ details.route('/details/build/:id').get(function(req, res, next){
     }, next)
 });
 
+details.route('/details/time/:timeStamp')
+.get(function (req,res, next) {
+    
+    var timeStamp = req.params.timeStamp
+    database.getDetailsByTime(timeStamp).then(function(result){      
+        res.send(result)
+    }, next);
+});
 module.exports = details;

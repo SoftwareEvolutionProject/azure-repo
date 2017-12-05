@@ -47,4 +47,13 @@ buildsRouter.post('/build/create',jsonParser, function(req, res){
     });
 });
 
+buildsRouter.route('/build/time/:timeStamp')
+.get(function (req,res, next) {
+    
+    var timeStamp = req.params.timeStamp
+    database.getBuildsByTime(timeStamp).then(function(result){      
+        res.send(result)
+    }, next);
+});
+
 module.exports = buildsRouter;

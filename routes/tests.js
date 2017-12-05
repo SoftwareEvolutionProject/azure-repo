@@ -28,6 +28,14 @@ testsRouter.route('/hallflowtest/:id')
     }, next);
 });
 
+testsRouter.route('/hallflowtest/time/:timeStamp')
+.get(function (req,res, next) {
+    var timeStamp = req.params.timeStamp
+    database.getTestByTime(timeStamp).then(function(result){
+        res.send(result)
+    }, next);
+});
+
 testsRouter.post('/hallflowtest/create', jsonParser, function(req, res){
     var operatorId = req.body.operatorId
     var date = req.body.date 

@@ -134,7 +134,45 @@ function getBuildsByDetailsId(id){
 	const query = 'select * from builddetails where detailsId=?'
 	return getDataByParameters(query, [id])
 }
+function getMachines(){
+	const query = 'select * from machine'
+	return getData(query)
+}
+function getMachineById(id){
+	const query = 'select * from machine where id=?'
+	return getDataByParameters(query,[id])
+}
+function getProjects(){
+	const query = 'select * from project'
+	return getData(query)
+}
+function getProjectById(id){
+	const query = 'select * from project where id=?'
+	return getDataByParameters(query,[id])
+}
 
+function getTestByTime(timeStamp){
+	const query = 'select * from hallflowtests where date=?'
+	return getDataByParameters(query,[timeStamp])
+}
+
+function getMaterialByTime(timeStamp){
+	const query = 'select * from material where createdDate=?'
+	return getDataByParameters(query,[timeStamp])
+}
+
+function getBuildsByTime(timeStamp){
+	const query = 'select * from builds where creationDate=?'
+	return getDataByParameters(query,[timeStamp])
+}
+function getDetailsByTime(timeStamp){
+	const query = 'select * from details where creationDate=?'
+	return getDataByParameters(query,[timeStamp])
+}
+function getPrintsByTime(timeStamp){
+	const query = 'select * from prints where startTime=?'
+	return getDataByParameters(query,[timeStamp])
+}
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
@@ -283,3 +321,12 @@ exports.getMeasurementById = getMeasurementById
 exports.createTest = createTest
 exports.getFileById = getFileById
 exports.getBuildsByDetailsId = getBuildsByDetailsId
+exports.getMachines = getMachines
+exports.getMachineById = getMachineById
+exports.getProjectById = getProjectById
+exports.getProjects = getProjects
+exports.getTestByTime = getTestByTime
+exports.getMaterialByTime = getMaterialByTime
+exports.getBuildsByTime = getBuildsByTime
+exports.getDetailsByTime = getDetailsByTime
+exports.getPrintsByTime = getPrintsByTime

@@ -17,6 +17,8 @@ var operator = require('./routes/operator.js');
 var material = require('./routes/material.js');
 var tests = require('./routes/tests.js');
 var measurement = require('./routes/measurement.js');
+var machine = require('./routes/machine.js');
+var project = require('./routes/project.js');
 
 
 //tell express that www is the root of our public web folder
@@ -31,6 +33,10 @@ app.use('/api', operator);
 app.use('/api', material);
 app.use('/api', tests);
 app.use('/api', measurement);
+app.use('/api', machine);
+app.use('/api', project);
+
+
 
 
 app.set('/download', path.join(__dirname, 'public'));

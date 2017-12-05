@@ -65,4 +65,13 @@ printsRouter.post('/print/create', jsonParser, function(req, res){
      });
 });
 
+printsRouter.route('/print/time/:timeStamp')
+.get(function (req,res, next) {
+    
+    var timeStamp = req.params.timeStamp
+    database.getPrintsByTime(timeStamp).then(function(result){      
+        res.send(result)
+    }, next);
+});
+
 module.exports = printsRouter;
