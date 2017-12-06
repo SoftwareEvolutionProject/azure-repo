@@ -198,16 +198,56 @@ function getPrintsByYear(year){
 }
 
 function getPrintsByParameters(year, operatorId, machineId){
+
+	if(year === undefined){
+		const query = 'select * from prints where operatorId=? AND machineId=? '
+		return getDataByParameters(query,[operatorId, machineId])
+	}
+	if(operatorId===undefined){
+		const query = 'select * from prints where YEAR(startTime)=? AND machineId=? '
+		return getDataByParameters(query,[year, machineId])
+	}
+	if(machineId===undefined){
+		const query = 'select * from prints where YEAR(startTime)=? AND operatorId=?'
+		return getDataByParameters(query,[year, operatorId])
+	}
 	const query = 'select * from prints where YEAR(startTime)=? AND operatorId=? AND machineId=? '
 	return getDataByParameters(query,[year, operatorId, machineId])
 }
 
 function getDetailsByFilter (year, companyId, projectId){
-	const query = 'select * from details where YEAR(creationDate)=? AND companyId=? AND projectId=? '
-	return getDataByParameters(query,[year, companyId, projectId])
+	if(projectId === undefined){
+		const query = 'select * from details where YEAR(creationDate)=? AND companyId=?'
+		return getDataByParameters(query,[year, companyId])
+	} 
+	if(companyId === undefined){
+		const query = 'select * from details where YEAR(creationDate)=? AND projectId=?'
+		return getDataByParameters(query,[year, projectId])
+	}
+	if(year === undefined){
+		const query = 'select * from details where companyId=? AND projectId=?'
+		return getDataByParameters(query,[companyId, projectId])
+	}
+	if (companyId != undefined && projectId != undefined && year!=undefined){		
+		const query = 'select * from details where YEAR(creationDate)=? AND companyId=? AND projectId=?'
+		return getDataByParameters(query,[year, companyId, projectId])
+	}
+
 }
 
 function getTestByParameters(year, operatorId, materialId){
+	if(year===undefined){
+		const query = 'select * from hallflowtests where operatorId=? AND materialId=? '
+		return getDataByParameters(query,[operatorId, materialId])
+	}
+	if(operatorId===undefined){
+		const query = 'select * from hallflowtests where YEAR(date)=? AND materialId=? '
+		return getDataByParameters(query,[year, materialId])
+	}
+	if(materialId===undefined){
+		const query = 'select * from hallflowtests where YEAR(date)=? AND operatorId=?'
+		return getDataByParameters(query,[year, operatorId])
+	}
 	const query = 'select * from hallflowtests where YEAR(date)=? AND operatorId=? AND materialId=? '
 	return getDataByParameters(query,[year, operatorId, materialId])
 }

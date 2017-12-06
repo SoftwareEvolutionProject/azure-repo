@@ -83,7 +83,7 @@ printsRouter.route('/print/date/:year')
     }, next);
 });
 
-printsRouter.route('/prints/filter/:year/:operatorId/:machineId')
+printsRouter.route('/prints/filter/year/:year?/operator/:operatorId?/machine/:machineId?')
 .get(function (req,res, next) {
     var year = req.params.year
     var operatorId = req.params.operatorId

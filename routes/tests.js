@@ -45,7 +45,7 @@ testsRouter.route('/hallflowtest/date/:year')
     }, next);
 });
 
-testsRouter.route('/hallflowtest/filter/:year/:operatorId/:materialId')
+testsRouter.route('/hallflowtest/filter/year/:year?/operator/:operatorId?/material/:materialId?')
 .get(function (req,res, next) {
     var year = req.params.year
     var operatorId = req.params.operatorId
