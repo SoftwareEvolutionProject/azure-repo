@@ -65,7 +65,7 @@ printsRouter.post('/print/create', jsonParser, function(req, res){
      });
 });
 
-printsRouter.route('/print/time/:month/:year')
+printsRouter.route('/print/time/:year/:month')
 .get(function (req,res, next) {
     
     var month = req.params.month
@@ -74,5 +74,14 @@ printsRouter.route('/print/time/:month/:year')
         res.send(result)
     }, next);
 });
+
+printsRouter.route('/print/time/:year')
+.get(function (req,res, next) {
+    var year = req.params.year
+    database.getPrintsByYear(year).then(function(result){      
+        res.send(result)
+    }, next);
+});
+
 
 module.exports = printsRouter;

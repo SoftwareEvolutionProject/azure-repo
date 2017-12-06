@@ -28,11 +28,19 @@ testsRouter.route('/hallflowtest/:id')
     }, next);
 });
 
-testsRouter.route('/hallflowtest/time/:month/:year')
+testsRouter.route('/hallflowtest/time/:year/:month')
 .get(function (req,res, next) {
-    var month = req.params.year
+    var month = req.params.month
     var year = req.params.year
     database.getTestByTime(month, year).then(function(result){
+        res.send(result)
+    }, next);
+});
+
+testsRouter.route('/hallflowtest/time/:year')
+.get(function (req,res, next) {
+    var year = req.params.year
+    database.getTestByYear(year).then(function(result){
         res.send(result)
     }, next);
 });

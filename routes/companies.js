@@ -20,7 +20,7 @@ companyRouter.route('/companies')
 });
 
 companyRouter.route('/company/:id').get(function(req, res, next){
-    var companyId = req.params.companyId
+    var companyId = req.params.id
     database.getCompanyById(companyId).then(function(result){
         res.send(result)
     }, next);

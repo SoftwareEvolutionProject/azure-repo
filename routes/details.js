@@ -71,7 +71,7 @@ details.route('/details/build/:id').get(function(req, res, next){
     }, next)
 });
 
-details.route('/details/time/:month/:year')
+details.route('/details/time/:year/:month')
 .get(function (req,res, next) {
     
     var month = req.body.month
@@ -80,4 +80,13 @@ details.route('/details/time/:month/:year')
         res.send(result)
     }, next);
 });
+
+details.route('/build/:year')
+.get(function (req,res, next) {
+    var year = req.body.year
+    database.getDetailsByYear(month,year).then(function(result){      
+        res.send(result)
+    }, next);
+});
+
 module.exports = details;

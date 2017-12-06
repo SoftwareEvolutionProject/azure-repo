@@ -173,6 +173,29 @@ function getPrintsByTime(month,year){
 	const query = 'select * from prints where MONTH(startTime)=? AND YEAR(startTime)=?'
 	return getDataByParameters(query,[month,year])
 }
+
+function getTestByYear(year){
+	const query = 'select * from hallflowtests where YEAR(date)=? '
+	return getDataByParameters(query,[month,year])
+}
+
+function getMaterialByYear(year){
+	const query = 'select * from material where YEAR(createdDate)=?'
+	return getDataByParameters(query,[month,year])
+}
+
+function getBuildsByYear(year){
+	const query = 'select * from builds where YEAR(creationDate)=?'
+	return getDataByParameters(query,[month,year])
+}
+function getDetailsByYear(year){
+	const query = 'select * from details where YEAR(creationDate)=?'
+	return getDataByParameters(query,[month,year])
+}
+function getPrintsByYear(year){
+	const query = 'select * from prints where YEAR(startTime)=?'
+	return getDataByParameters(query,[month,year])
+}
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
