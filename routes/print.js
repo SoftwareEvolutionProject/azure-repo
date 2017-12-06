@@ -83,5 +83,15 @@ printsRouter.route('/print/date/:year')
     }, next);
 });
 
+printsRouter.route('/prints/filter/:year/:operatorId/:machineId')
+.get(function (req,res, next) {
+    var year = req.params.year
+    var operatorId = req.params.operatorId
+    var machineId = req.params.machineId
+
+    database.getPrintsByParameters(year, operatorId, machineId).then(function(result){      
+        res.send(result)
+    }, next);
+});
 
 module.exports = printsRouter;

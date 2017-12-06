@@ -196,6 +196,21 @@ function getPrintsByYear(year){
 	const query = 'select * from prints where YEAR(startTime)=?'
 	return getDataByParameters(query,[year])
 }
+
+function getPrintsByParameters(year, operatorId, machineId){
+	const query = 'select * from prints where YEAR(startTime)=? AND operatorId=? AND machineId=? '
+	return getDataByParameters(query,[year, operatorId, machineId])
+}
+
+function getDetailsByFilter (year, companyId, projectId){
+	const query = 'select * from details where YEAR(creationDate)=? AND companyId=? AND projectId=? '
+	return getDataByParameters(query,[year, companyId, projectId])
+}
+
+function getTestByParameters(year, operatorId, materialId){
+	const query = 'select * from hallflowtests where YEAR(date)=? AND operatorId=? AND materialId=? '
+	return getDataByParameters(query,[year, operatorId, materialId])
+}
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
@@ -353,9 +368,11 @@ exports.getMaterialByTime = getMaterialByTime
 exports.getBuildsByTime = getBuildsByTime
 exports.getDetailsByTime = getDetailsByTime
 exports.getPrintsByTime = getPrintsByTime
-
 exports.getTestByYear = getTestByYear
 exports.getMaterialByYear = getMaterialByYear
 exports.getBuildsByYear = getBuildsByYear
 exports.getDetailsByYear = getDetailsByYear
 exports.getPrintsByYear = getPrintsByYear
+exports.getPrintsByParameters = getPrintsByParameters
+exports.getDetailsByFilter = getDetailsByFilter
+exports.getTestByParameters = getTestByParameters

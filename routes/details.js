@@ -89,4 +89,15 @@ details.route('/details/date/:year')
     }, next);
 });
 
+details.route('/details/filter/:year/:companyId/:projectId')
+.get(function (req,res, next) {
+    var year = req.params.year
+    var companyId = req.params.companyId
+    var projectId = req.params.projectId
+
+    database.getDetailsByFilter(year, companyId, projectId).then(function(result){      
+        res.send(result)
+    }, next);
+});
+
 module.exports = details;

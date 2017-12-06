@@ -71,6 +71,8 @@ parameters : json ex ->
 "comment" : "teststing insert"
 }
 
+'/details/filter/:year/:companyId/:projectId'
+
 # prints
 '/prints' -> list of prints
 
@@ -103,6 +105,7 @@ parameters : json ex ->
 "buildPlatformWeight": "530"
 }
 
+'/prints/filter/:year/:operatorId/:machineId'
 
 # buildparts
 
@@ -164,6 +167,9 @@ parameters : json ex ->
 "measurementId" : "int",
 "materialId":"int"
 }
+
+'/hallflowtest/filter/:year/:operatorId/:materialId' 
+
 
 # material
 
