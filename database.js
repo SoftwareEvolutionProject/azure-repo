@@ -249,8 +249,8 @@ function getDataByParameters(sqlQuery, arrayOfParameters){
 	return deferred.promise;
 }
 
-function createTest(operatorId,date,relativehumidity,temperature,tap,measurementId,materialId){
-	var queryString = 'INSERT INTO hallflowtests (operatorId, date, relativehumidity, temperature, tap, measurementId, materialId) VALUES(?, ?, ?, ?, ?, ?, ?);';	
+function createTest(operatorId,date,relativehumidity,temperature,tap,materialId){
+	var queryString = 'INSERT INTO hallflowtests (operatorId, date, relativehumidity, temperature, tap, materialId) VALUES(?, ?, ?, ?, ?, ?, ?);';	
 	return createObject(queryString,[operatorId, date, relativehumidity, temperature, tap, measurementId,
 		materialId])
 }
