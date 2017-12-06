@@ -71,11 +71,12 @@ details.route('/details/build/:id').get(function(req, res, next){
     }, next)
 });
 
-details.route('/details/time/:timeStamp')
+details.route('/details/time/:month/:year')
 .get(function (req,res, next) {
     
-    var timeStamp = req.params.timeStamp
-    database.getDetailsByTime(timeStamp).then(function(result){      
+    var month = req.body.month
+    var year = req.body.year
+    database.getDetailsByTime(month,year).then(function(result){      
         res.send(result)
     }, next);
 });

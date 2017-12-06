@@ -32,11 +32,11 @@ materialRouter.route('/material/:id')
     }, next);
 });
 
-materialRouter.route('/material/time/:timeStamp')
+materialRouter.route('/material/time/:month/:year')
 .get(function (req,res, next) {
-    
-    var timeStamp = req.params.timeStamp
-    database.getMaterialByTime(timeStamp).then(function(result){      
+    var month = req.params.year
+    var year = req.params.year
+    database.getMaterialByTime(month,year).then(function(result){      
         res.send(result)
     }, next);
 });

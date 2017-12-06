@@ -47,11 +47,12 @@ buildsRouter.post('/build/create',jsonParser, function(req, res){
     });
 });
 
-buildsRouter.route('/build/time/:timeStamp')
+buildsRouter.route('/build/time/:month/:year')
 .get(function (req,res, next) {
     
-    var timeStamp = req.params.timeStamp
-    database.getBuildsByTime(timeStamp).then(function(result){      
+    var month = req.body.month
+    var year = req.body.year
+    database.getBuildsByTime(month,year).then(function(result){      
         res.send(result)
     }, next);
 });

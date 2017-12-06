@@ -23,6 +23,8 @@ parameters : json ex ->
 "comment" : ""
 }
 
+'/build/time/:month/:year' -> return all builds by month and year
+
 # companies
 '/companies' -> list of companies
 
@@ -72,6 +74,8 @@ parameters : json ex ->
 '/print/machine/:id' -> one print - parameter: machine name
 
 '/print/operator/:operatorId'-> one print - parameter: operatorId
+
+'/print/time/:month/:year' -> return a list of prints using the month and year
 
 '/print/create' 
 
@@ -134,6 +138,8 @@ parameters : json ex ->
 - verb: get
 - parameter: test id
 
+'/hallflowtest/time/:month/:year' -> return all the test using the month and the year
+
 '/hallflowtest/create'
 - verb: post
 parameters : json ex -> 
@@ -157,6 +163,8 @@ parameters : json ex ->
 
 '/material/pdf/:id' -> return a pdf file in JSON format
 
+'/material/time/:month/:year' -> return materials by month & year
+
 # measurement
 
 '/measurements' -> return all measurements
@@ -164,3 +172,20 @@ parameters : json ex ->
 '/measurement/:id' 
 - verb: get
 - parameter: measurement Id
+
+
+# project
+
+'api//projects' -> return all projects
+
+'/project/:id' 
+- verb: get
+- parameter: projectId
+
+# machine
+
+'api/machines' -> return all machines
+
+'api/machine/:id'
+- verb: get
+- parameter: machineId

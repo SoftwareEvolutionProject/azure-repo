@@ -151,23 +151,23 @@ function getProjectById(id){
 	return getDataByParameters(query,[id])
 }
 
-function getTestByTime(timeStamp){
-	const query = 'select * from hallflowtests where date=?'
-	return getDataByParameters(query,[timeStamp])
+function getTestByTime(month,year){
+	const query = 'select * from hallflowtests where MONTH(date)=? AND YEAR(date)=? '
+	return getDataByParameters(query,[month,year])
 }
 
-function getMaterialByTime(timeStamp){
-	const query = 'select * from material where createdDate=?'
-	return getDataByParameters(query,[timeStamp])
+function getMaterialByTime(month,year){
+	const query = 'select * from material where MONTH(createdDate)=? AND YEAR(createdDate)=?'
+	return getDataByParameters(query,[month,year])
 }
 
-function getBuildsByTime(timeStamp){
-	const query = 'select * from builds where creationDate=?'
-	return getDataByParameters(query,[timeStamp])
+function getBuildsByTime(month,year){
+	const query = 'select * from builds where MONTH(creationDate)=? AND YEAR(creationDate)=?'
+	return getDataByParameters(query,[month,year])
 }
-function getDetailsByTime(timeStamp){
-	const query = 'select * from details where creationDate=?'
-	return getDataByParameters(query,[timeStamp])
+function getDetailsByTime(month,year){
+	const query = 'select * from details where MONTH(creationDate)=? AND YEAR(creationDate)=?'
+	return getDataByParameters(query,[month,year])
 }
 function getPrintsByTime(month,year){
 	const query = 'select * from prints where MONTH(startTime)=? AND YEAR(startTime)=?'
