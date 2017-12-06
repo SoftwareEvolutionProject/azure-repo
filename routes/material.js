@@ -32,7 +32,7 @@ materialRouter.route('/material/:id')
     }, next);
 });
 
-materialRouter.route('/material/time/:year/:month')
+materialRouter.route('/material/date/:year/:month')
 .get(function (req,res, next) {
     var month = req.params.month
     var year = req.params.year
@@ -41,7 +41,7 @@ materialRouter.route('/material/time/:year/:month')
     }, next);
 });
 
-materialRouter.route('/material/time/:year')
+materialRouter.route('/material/date/:year')
 .get(function (req,res, next) {
     var year = req.params.year
     database.getMaterialByTime(year).then(function(result){      

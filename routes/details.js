@@ -71,20 +71,20 @@ details.route('/details/build/:id').get(function(req, res, next){
     }, next)
 });
 
-details.route('/details/time/:year/:month')
+details.route('/details/date/:year/:month')
 .get(function (req,res, next) {
     
-    var month = req.body.month
-    var year = req.body.year
+    var month = req.params.month
+    var year = req.params.year
     database.getDetailsByTime(month,year).then(function(result){      
         res.send(result)
     }, next);
 });
 
-details.route('/build/:year')
+details.route('/details/date/:year')
 .get(function (req,res, next) {
-    var year = req.body.year
-    database.getDetailsByYear(month,year).then(function(result){      
+    var year = req.params.year
+    database.getDetailsByYear(year).then(function(result){      
         res.send(result)
     }, next);
 });

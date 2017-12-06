@@ -176,25 +176,25 @@ function getPrintsByTime(month,year){
 
 function getTestByYear(year){
 	const query = 'select * from hallflowtests where YEAR(date)=? '
-	return getDataByParameters(query,[month,year])
+	return getDataByParameters(query,[year])
 }
 
 function getMaterialByYear(year){
 	const query = 'select * from material where YEAR(createdDate)=?'
-	return getDataByParameters(query,[month,year])
+	return getDataByParameters(query,[year])
 }
 
 function getBuildsByYear(year){
 	const query = 'select * from builds where YEAR(creationDate)=?'
-	return getDataByParameters(query,[month,year])
+	return getDataByParameters(query,[year])
 }
 function getDetailsByYear(year){
 	const query = 'select * from details where YEAR(creationDate)=?'
-	return getDataByParameters(query,[month,year])
+	return getDataByParameters(query,[year])
 }
 function getPrintsByYear(year){
 	const query = 'select * from prints where YEAR(startTime)=?'
-	return getDataByParameters(query,[month,year])
+	return getDataByParameters(query,[year])
 }
 function getData(sqlQuery){
 	var deferred = Q.defer();
@@ -353,3 +353,9 @@ exports.getMaterialByTime = getMaterialByTime
 exports.getBuildsByTime = getBuildsByTime
 exports.getDetailsByTime = getDetailsByTime
 exports.getPrintsByTime = getPrintsByTime
+
+exports.getTestByYear = getTestByYear
+exports.getMaterialByYear = getMaterialByYear
+exports.getBuildsByYear = getBuildsByYear
+exports.getDetailsByYear = getDetailsByYear
+exports.getPrintsByYear = getPrintsByYear

@@ -28,7 +28,7 @@ testsRouter.route('/hallflowtest/:id')
     }, next);
 });
 
-testsRouter.route('/hallflowtest/time/:year/:month')
+testsRouter.route('/hallflowtest/date/:year/:month')
 .get(function (req,res, next) {
     var month = req.params.month
     var year = req.params.year
@@ -37,7 +37,7 @@ testsRouter.route('/hallflowtest/time/:year/:month')
     }, next);
 });
 
-testsRouter.route('/hallflowtest/time/:year')
+testsRouter.route('/hallflowtest/date/:year')
 .get(function (req,res, next) {
     var year = req.params.year
     database.getTestByYear(year).then(function(result){
