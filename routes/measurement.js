@@ -28,4 +28,25 @@ measurementRouter.route('/measurement/:id')
     }, next);
 });
 
+
+measurementRouter.route('/measurements/hallflowtest/:id')
+.get(function (req,res, next) {
+    var id = req.params.id
+    database.getMeasurementByTestId(id).then(function(result){
+        res.send(result)
+    }, next);
+});
+
+measurementRouter.post('/measurements/create', jsonParser, function(req, res){
+    var measValue = req.body.measValue
+    var hallflowtestId = req.body.hallflowtestId
+
+    console.log(req.body)
+    database.createMeasurement(measValue, hallflowtestId).then(function(data){
+            res.status(200).send("success");
+        }, function (error) {
+         console.log('Error from createPrint in print: ' + error);
+     });
+});
+
 module.exports = measurementRouter;

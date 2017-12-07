@@ -251,6 +251,24 @@ function getTestByParameters(year, operatorId, materialId){
 	const query = 'select * from hallflowtests where YEAR(date)=? AND operatorId=? AND materialId=? '
 	return getDataByParameters(query,[year, operatorId, materialId])
 }
+
+function getTestByMaterialId(id){
+	const query = 'select * from hallflowtests where materialId=?'
+	return getDataByParameters(query,[id])
+}
+
+function getTestByOperatorId(id){
+	const query = 'select * from hallflowtests where operatorId=?'
+	return getDataByParameters(query,[id])
+}
+function getMeasurementByTestId(id){
+	const query = 'select * from measurement where hallflowTestId=?'
+	return getDataByParameters(query,[id])
+}
+function getTestById(id){
+	const query = 'select * from hallflowtests where id=?'
+	return getDataByParameters(query,[id])
+}
 function getData(sqlQuery){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
@@ -336,6 +354,11 @@ function createDetails(name, companyId, fileId, projectId, creationDate, comment
 	var queryString = 'INSERT INTO details (name, companyId, fileId, projectId, creationDate, comment) VALUES(?, ?, ?, ?, ?, ?);'
 	return createObject(queryString, [name, companyId, fileId, projectId, creationDate, comment])
 }
+
+function createMeasurement(measValue, testId){
+	var queryString = 'INSERT INTO measurement (measurementValue, hallflowTestId) VALUES(?, ?);'
+	return createObject(queryString, [measValue, testId])
+}
 function createObject(sqlQuery, arrayOfParameters){
 	var deferred = Q.defer();
 	pool.getConnection(function (err, connection) {
@@ -416,3 +439,8 @@ exports.getPrintsByYear = getPrintsByYear
 exports.getPrintsByParameters = getPrintsByParameters
 exports.getDetailsByFilter = getDetailsByFilter
 exports.getTestByParameters = getTestByParameters
+exports.getTestByMaterialId = getTestByMaterialId
+exports.getTestByOperatorId = getTestByOperatorId
+exports.getMeasurementByTestId = getMeasurementByTestId
+exports.getTestById = getTestById
+exports.createMeasurement = createMeasurement
