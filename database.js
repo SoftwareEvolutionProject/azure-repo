@@ -61,7 +61,7 @@ function getPrintByBuildId(buildId){
     return getDataByParameters(query,[buildId])
 }
 function getPrintByMachine(machine){
-    const query = 'select * from prints where machine=?'
+    const query = 'select * from prints where machineId=?'
     return getDataByParameters(query,[machine])
 }
 function getPrintByOperator(operatorId){
