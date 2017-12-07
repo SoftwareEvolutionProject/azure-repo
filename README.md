@@ -23,7 +23,10 @@ parameters : json ex ->
 "comment" : ""
 }
 
-'/build/time/:month/:year' -> return all builds by month and year
+'/build/date/:year/:month' -> return all builds by month and year
+
+'/build/date/:year/:month' -> return all builds year
+
 
 # companies
 '/companies' -> list of companies
@@ -51,6 +54,10 @@ parameters : json ex ->
 
 '/details/build/:id' -> get a list of details Ids - parameter: buildId
 
+'/details/date/:year/:month' -> return a list of details using the month and year
+
+'/details/date/:year' -> return a list of details using year
+
 'details/create'
 
 - verb: POST
@@ -64,6 +71,8 @@ parameters : json ex ->
 "comment" : "teststing insert"
 }
 
+'/details/filter/:year/:companyId/:projectId'
+
 # prints
 '/prints' -> list of prints
 
@@ -75,7 +84,9 @@ parameters : json ex ->
 
 '/print/operator/:operatorId'-> one print - parameter: operatorId
 
-'/print/time/:month/:year' -> return a list of prints using the month and year
+'/print/date/:year/:month' -> return a list of prints using the month and year
+
+'/print/date/:year' -> return a list of prints using the year
 
 '/print/create' 
 
@@ -94,6 +105,7 @@ parameters : json ex ->
 "buildPlatformWeight": "530"
 }
 
+'/prints/filter/:year/:operatorId/:machineId'
 
 # buildparts
 
@@ -138,7 +150,10 @@ parameters : json ex ->
 - verb: get
 - parameter: test id
 
-'/hallflowtest/time/:month/:year' -> return all the test using the month and the year
+'/hallflowtest/date/:year/:month' -> return all the test using the month and the year
+
+'/hallflowtest/date/:year' -> return all the test using the year
+
 
 '/hallflowtest/create'
 - verb: post
@@ -153,6 +168,9 @@ parameters : json ex ->
 "materialId":"int"
 }
 
+'/hallflowtest/filter/:year/:operatorId/:materialId' 
+
+
 # material
 
 '/materials' -> return all materials
@@ -163,7 +181,10 @@ parameters : json ex ->
 
 '/material/pdf/:id' -> return a pdf file in JSON format
 
-'/material/time/:month/:year' -> return materials by month & year
+'/material/date/:year/:month' -> return materials by month & year
+
+'/material/date/:year' -> return materials by the year
+
 
 # measurement
 

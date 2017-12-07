@@ -47,12 +47,21 @@ buildsRouter.post('/build/create',jsonParser, function(req, res){
     });
 });
 
-buildsRouter.route('/build/time/:month/:year')
+buildsRouter.route('/build/date/:year/:month')
 .get(function (req,res, next) {
+    var year = req.params.year
+    var month = req.params.month
+    console.log(year)
     
-    var month = req.body.month
-    var year = req.body.year
     database.getBuildsByTime(month,year).then(function(result){      
+        res.send(result)
+    }, next);
+});
+
+buildsRouter.route('/build/date/:year')
+.get(function (req,res, next) {
+    var year = req.params.year
+    database.getBuildsByYear(year).then(function(result){      
         res.send(result)
     }, next);
 });

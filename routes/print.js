@@ -65,12 +65,31 @@ printsRouter.post('/print/create', jsonParser, function(req, res){
      });
 });
 
-printsRouter.route('/print/time/:month/:year')
+printsRouter.route('/print/date/:year/:month')
 .get(function (req,res, next) {
     
     var month = req.params.month
     var year = req.params.year
     database.getPrintsByTime(month,year).then(function(result){      
+        res.send(result)
+    }, next);
+});
+
+printsRouter.route('/print/date/:year')
+.get(function (req,res, next) {
+    var year = req.params.year
+    database.getPrintsByYear(year).then(function(result){      
+        res.send(result)
+    }, next);
+});
+
+printsRouter.route('/prints/filter/year/:year?/operator/:operatorId?/machine/:machineId?')
+.get(function (req,res, next) {
+    var year = req.params.year
+    var operatorId = req.params.operatorId
+    var machineId = req.params.machineId
+
+    database.getPrintsByParameters(year, operatorId, machineId).then(function(result){      
         res.send(result)
     }, next);
 });

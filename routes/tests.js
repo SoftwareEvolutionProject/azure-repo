@@ -28,11 +28,30 @@ testsRouter.route('/hallflowtest/:id')
     }, next);
 });
 
-testsRouter.route('/hallflowtest/time/:month/:year')
+testsRouter.route('/hallflowtest/date/:year/:month')
 .get(function (req,res, next) {
-    var month = req.params.year
+    var month = req.params.month
     var year = req.params.year
     database.getTestByTime(month, year).then(function(result){
+        res.send(result)
+    }, next);
+});
+
+testsRouter.route('/hallflowtest/date/:year')
+.get(function (req,res, next) {
+    var year = req.params.year
+    database.getTestByYear(year).then(function(result){
+        res.send(result)
+    }, next);
+});
+
+testsRouter.route('/hallflowtest/filter/year/:year?/operator/:operatorId?/material/:materialId?')
+.get(function (req,res, next) {
+    var year = req.params.year
+    var operatorId = req.params.operatorId
+    var materialId = req.params.materialId
+
+    database.getTestByParameters(year, operatorId, materialId).then(function(result){
         res.send(result)
     }, next);
 });
@@ -43,12 +62,10 @@ testsRouter.post('/hallflowtest/create', jsonParser, function(req, res){
     var relativehumidity= req.body.relativehumidity
     var temperature = req.body.temperature 
     var tap = req.body.tap
-    var measurementId = req.body.measurementId
     var  materialId = req.body.materialId
 
     console.log(req.body)
-    database.createTest(operatorId, date, relativehumidity, temperature, tap,
-        measurementId, materialId).then(function(data){
+    database.createTest(operatorId, date, relativehumidity, temperature, tap, materialId).then(function(data){
             res.status(200).send("success");
         }, function (error) {
          console.log('Error from createPrint in print: ' + error);
