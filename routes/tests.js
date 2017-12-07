@@ -63,9 +63,10 @@ testsRouter.post('/hallflowtest/create', jsonParser, function(req, res){
     var temperature = req.body.temperature 
     var tap = req.body.tap
     var  materialId = req.body.materialId
+    var machineId = req.body.machineId
 
     console.log(req.body)
-    database.createTest(operatorId, date, relativehumidity, temperature, tap, materialId).then(function(data){
+    database.createTest(operatorId, date, relativehumidity, temperature, tap, materialId,machineId).then(function(data){
             res.status(200).send("success");
         }, function (error) {
          console.log('Error from createPrint in print: ' + error);
