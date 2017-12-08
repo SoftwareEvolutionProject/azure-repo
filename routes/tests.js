@@ -73,4 +73,20 @@ testsRouter.post('/hallflowtest/create', jsonParser, function(req, res){
      });
 });
 
+testsRouter.route('/hallflowtest/material/:id')
+.get(function (req,res, next) {
+    var id = req.params.id
+    database.getTestByMaterialId(id).then(function(result){
+        res.send(result)
+    }, next);
+});
+
+testsRouter.route('/hallflowtest/operator/:id')
+.get(function (req,res, next) {
+    var id = req.params.id
+    database.getTestByOperatorId(id).then(function(result){
+        res.send(result)
+    }, next);
+});
+
 module.exports = testsRouter;
