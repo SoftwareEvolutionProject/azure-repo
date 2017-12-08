@@ -44,7 +44,7 @@ materialRouter.route('/material/date/:year/:month')
 materialRouter.route('/material/date/:year')
 .get(function (req,res, next) {
     var year = req.params.year
-    database.getMaterialByTime(year).then(function(result){      
+    database.getMaterialByYear(year).then(function(result){      
         res.send(result)
     }, next);
 });
