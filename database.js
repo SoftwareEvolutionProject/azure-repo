@@ -157,7 +157,7 @@ function getTestByTime(month,year){
 }
 
 function getMaterialByTime(month,year){
-	const query = 'select * from material where MONTH(createdDate)=? AND YEAR(createdDate)=?'
+	const query = 'select * from material where MONTH(creationDate)=? AND YEAR(creationDate)=?'
 	return getDataByParameters(query,[month,year])
 }
 
