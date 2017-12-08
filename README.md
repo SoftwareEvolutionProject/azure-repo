@@ -203,6 +203,14 @@ parameters : json ex ->
 - verb: get
 - parameter: projectId
 
+'/project/create' 
+- verb: POST
+- parameter : project
+
+{
+    'project':"project name"
+}
+
 # machine
 
 'api/machines' -> return all machines

@@ -27,6 +27,7 @@ companyRouter.route('/company/:id').get(function(req, res, next){
 });
 
 companyRouter.post('/company/create', jsonParser, function(req, res){
+
     var name = req.body.name
     database.createCompanies(name).then(function(data){
         res.status(200).send("success");        

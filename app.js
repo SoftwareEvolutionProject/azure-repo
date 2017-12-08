@@ -1,10 +1,10 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
-var http = require('http');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var path = require('path');
+var http = require('http')
+var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
+var path = require('path')
 
 
 var details = require('./routes/details.js');
@@ -49,6 +49,9 @@ app.use(function(req, res, next){
     next();
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use(function(err, req, res, next) {
 	if (err) {

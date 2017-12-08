@@ -323,8 +323,8 @@ function getDataByParameters(sqlQuery, arrayOfParameters){
 }
 
 function createTest(operatorId,date,relativehumidity,temperature,tap,materialId, machineId){
-	var queryString = 'INSERT INTO hallflowtests (operatorId, date, relativehumidity, temperature, tap, materialId, machineId) VALUES(?, ?, ?, ?, ?, ?,?,?);';	
-	return createObject(queryString,[operatorId, date, relativehumidity, temperature, tap, measurementId,
+	var queryString = 'INSERT INTO hallflowtests (operatorId, date, relativehumidity, temperature, tap, materialId, machineId) VALUES(?, ?, ?, ?, ?, ?,?);';	
+	return createObject(queryString,[operatorId, date, relativehumidity, temperature, tap,
 		materialId, machineId])
 }
 
@@ -358,6 +358,11 @@ function createDetails(name, companyId, fileId, projectId, creationDate, comment
 function createMeasurement(measValue, testId){
 	var queryString = 'INSERT INTO measurement (measurementValue, hallflowTestId) VALUES(?, ?);'
 	return createObject(queryString, [measValue, testId])
+}
+
+function createProject(project){
+	var queryString = 'INSERT INTO project (name) VALUES(?);'
+	return createObject(queryString, [project])
 }
 function createObject(sqlQuery, arrayOfParameters){
 	var deferred = Q.defer();
@@ -444,3 +449,4 @@ exports.getTestByOperatorId = getTestByOperatorId
 exports.getMeasurementByTestId = getMeasurementByTestId
 exports.getTestById = getTestById
 exports.createMeasurement = createMeasurement
+exports.createProject = createProject
