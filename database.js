@@ -180,7 +180,7 @@ function getTestByYear(year){
 }
 
 function getMaterialByYear(year){
-	const query = 'select * from material where YEAR(createdDate)=?'
+	const query = 'select * from material where YEAR(creationDate)=?'
 	return getDataByParameters(query,[year])
 }
 
