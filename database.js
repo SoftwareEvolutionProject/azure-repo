@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+var dateTime = require('node-datetime')
 Q = require('q');
 var pool;
 pool = mysql.createPool({
@@ -322,9 +323,13 @@ function getDataByParameters(sqlQuery, arrayOfParameters){
 	return deferred.promise;
 }
 
-function createTest(operatorId,date,relativehumidity,temperature,tap,materialId, machineId){
+function createTest(operatorId,relativehumidity,temperature,tap,materialId, machineId){
+	var dt = dateTime.create()
+	var formattedDate = dt.format('Y-m-d H:M:S')
+	console.log(formattedDate)
+	
 	var queryString = 'INSERT INTO hallflowtests (operatorId, date, relativehumidity, temperature, tap, materialId, machineId) VALUES(?, ?, ?, ?, ?, ?,?);';	
-	return createObject(queryString,[operatorId, date, relativehumidity, temperature, tap,
+	return createObject(queryString,[operatorId, formattedDate, relativehumidity, temperature, tap,
 		materialId, machineId])
 }
 
@@ -335,9 +340,13 @@ function createPrint(buildsId, startTime, endTime, operator, machine, powderWeig
 		return createObject(queryString,[buildsId, startTime, endTime, operator, machine, powderWeightStart,
 			powderWeightEnd, buildPlatformMaterial, buildPlatformWeight])
 }
-function createBuild(image, creationDate,comment){
+function createBuild(imageId,comment){
+	var dt = dateTime.create()
+	var formattedDate = dt.format('Y-m-d H:M:S')
+	console.log(formattedDate)
+
 	var queryString = 'INSERT INTO builds (imageId, creationDate, comment) VALUES(?, ?, ?);'
-	return createObject(queryString, [imageId,creationDate,comment])
+	return createObject(queryString, [imageId,formattedDate,comment])
 }
 
 function createBuildParts(buildDetailsId, partId, partComment){
@@ -350,9 +359,13 @@ function createCompanies(name){
 	return createObject(queryString, [name])
 }
 
-function createDetails(name, companyId, fileId, projectId, creationDate, comment){
+function createDetails(name, companyId, fileId, projectId, comment){
+	var dt = dateTime.create()
+	var formattedDate = dt.format('Y-m-d H:M:S')
+	console.log(formattedDate)
+
 	var queryString = 'INSERT INTO details (name, companyId, fileId, projectId, creationDate, comment) VALUES(?, ?, ?, ?, ?, ?);'
-	return createObject(queryString, [name, companyId, fileId, projectId, creationDate, comment])
+	return createObject(queryString, [name, companyId, fileId, projectId, formattedDate, comment])
 }
 
 function createMeasurement(measValue, testId){

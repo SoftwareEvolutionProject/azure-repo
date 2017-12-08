@@ -58,14 +58,13 @@ testsRouter.route('/hallflowtest/filter/year/:year?/operator/:operatorId?/materi
 
 testsRouter.post('/hallflowtest/create', jsonParser, function(req, res){
     var operatorId = req.body.operatorId
-    var date = req.body.date 
     var relativehumidity= req.body.relativehumidity
     var temperature = req.body.temperature 
     var tap = req.body.tap
     var  materialId = req.body.materialId
     var machineId = req.body.machineId
 
-    database.createTest(operatorId, date, relativehumidity, temperature, tap, materialId,machineId).then(function(data){
+    database.createTest(operatorId, relativehumidity, temperature, tap, materialId,machineId).then(function(data){
             res.status(200).send("success");
         }, function (error) {
          console.log('Error from createPrint in print: ' + error);
