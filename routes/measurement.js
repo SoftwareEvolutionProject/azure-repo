@@ -37,7 +37,7 @@ measurementRouter.route('/measurements/hallflowtest/:id')
     }, next);
 });
 
-measurementRouter.post('/measurements/create', jsonParser, function(req, res){
+measurementRouter.post('/measurement/create', jsonParser, function(req, res){
     var measValue = req.body.measValue
     var hallflowtestId = req.body.hallflowtestId
 
