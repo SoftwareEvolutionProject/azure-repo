@@ -1,6 +1,7 @@
-var mysql = require('mysql');
+'use strict';
+var mysql = require('mysql')
 var dateTime = require('node-datetime')
-Q = require('q');
+var Q = require('q');
 var pool;
 pool = mysql.createPool({
     connectionLimit: 10,

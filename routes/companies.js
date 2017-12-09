@@ -30,7 +30,7 @@ companyRouter.post('/company/create', jsonParser, function(req, res){
 
     var name = req.body.name
     database.createCompanies(name).then(function(data){
-        res.status(200).send("success");        
+        res.status(200).send(data);        
     }, function(error){
         console.log('Error from createCompanies in company: ' + error);        
     });

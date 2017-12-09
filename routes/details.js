@@ -34,14 +34,6 @@ details.route('/details/companyId/:id').get(function(req, res, next){
     }, next);
 });
 
-// // TOFIX
-// details.route('/details/originalFileName/:filename').get(function(req, res, next){
-//     var filename = req.params.filename
-//     database.getDetailsByOriginalFileName(filename).then(function(detail){
-//         res.send(detail)
-//     }, next);
-// });
-
 details.route('/details/projectId/:projectId').get(function(req, res, next){
     var projectId = req.params.projectId
     database.getDetailsByProjectId(projectId).then(function(detail){
@@ -54,10 +46,9 @@ details.post('/details/create', jsonParser, function(req, res){
     var companyId = req.body.companyId
     var fileId = req.body.fileId
     var projectId = req.body.projectId
-    var creationDate = req.body.creationDate
     var comment = req.body.comment
 
-    database.createDetails(name, companyId, fileId, projectId, creationDate, comment).then(function(data){
+    database.createDetails(name, companyId, fileId, projectId, comment).then(function(data){
         res.status(200).send("success");        
     }, function(error){
         console.log('Error from createDetails in details: ' + error);        

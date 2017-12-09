@@ -43,7 +43,7 @@ measurementRouter.post('/measurements/create', jsonParser, function(req, res){
 
     console.log(req.body)
     database.createMeasurement(measValue, hallflowtestId).then(function(data){
-            res.status(200).send("success");
+            res.status(200).send(data);
         }, function (error) {
          console.log('Error from createPrint in print: ' + error);
      });

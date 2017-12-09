@@ -27,14 +27,15 @@ projectRouter.route('/project/:id')
     }, next);
 });
 
-projectRouter.post('/project/create', jsonParser, function(req, res){
+projectRouter.post('/project/create', jsonParser, function(req, res,next){
     var project = req.body.project
 
     database.createProject(project).then(function(data){
-            res.status(200).send("success");
+        console.log(data)
+            res.status(200).send(data);
         }, function (error) {
          console.log('Error from createPrint in print: ' + error);
-     });
+     }, next);
 });
 
 

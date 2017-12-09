@@ -59,7 +59,7 @@ printsRouter.post('/print/create', jsonParser, function(req, res){
 
     database.createPrint(buildsId, startTime, endTime, operator, machine, powderWeightStart,
         powderWeightEnd, buildPlatformMaterial, buildPlatformWeight).then(function(data){
-            res.status(200).send("success");
+            res.status(200).send(data);
         }, function (error) {
          console.log('Error from createPrint in print: ' + error);
      });

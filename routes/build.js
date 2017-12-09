@@ -41,7 +41,7 @@ buildsRouter.post('/build/create',jsonParser, function(req, res){
     var comment = req.body.comment
     
     database.createBuild(imageId,comment).then(function(data){
-        res.status(200).send("success");
+        res.status(200).send(data);
     }, function(error){
         console.log('Error from createbuild in build: ' + error);        
     });
